@@ -68,8 +68,14 @@ func main() {
 		log.Fatal(err)
 	}
 	ebiten.SetWindowSize(width, height)
-	ebiten.SetWindowTitle("Hello, World!")
-	if err := ebiten.RunGame(game); err != nil {
+	ebiten.SetWindowDecorated(false)
+	ebiten.SetWindowMousePassthrough(true)
+	ebiten.SetWindowFloating(true)
+	ebiten.SetWindowClosingHandled(true)
+
+	op := &ebiten.RunGameOptions{}
+	op.ScreenTransparent = true
+	if err := ebiten.RunGameWithOptions(game, op); err != nil {
 		log.Fatal(err)
 	}
 }
