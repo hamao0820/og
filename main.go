@@ -64,7 +64,11 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	screen.DrawImage(g.image, nil)
+	op := &ebiten.DrawImageOptions{}
+	if g.y < 0 {
+		op.GeoM.Translate(0, float64(g.y))
+	}
+	screen.DrawImage(g.image, op)
 }
 
 func (g *Game) Layout(w, h int) (int, int) {
