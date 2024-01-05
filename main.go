@@ -17,11 +17,16 @@ var fs embed.FS
 
 type Game struct {
 	image *ebiten.Image
+	x, y  int
 }
 
 const (
 	width  = 370
 	height = 320
+)
+
+var (
+	screenwidth, screenHeight = ebiten.ScreenSizeInFullscreen()
 )
 
 func NewGame() (*Game, error) {
@@ -47,10 +52,14 @@ func NewGame() (*Game, error) {
 
 	return &Game{
 		image: reversed,
+		x:     screenwidth/2 - width/2,
+		y:     -height,
 	}, nil
 }
 
 func (g *Game) Update() error {
+	g.y += 10
+	ebiten.SetWindowPosition(g.x, g.y)
 	return nil
 }
 
