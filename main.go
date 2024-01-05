@@ -8,6 +8,7 @@ import (
 	"log"
 	"math"
 	"math/rand"
+	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -60,6 +61,11 @@ func NewGame() (*Game, error) {
 func (g *Game) Update() error {
 	g.y += 10
 	ebiten.SetWindowPosition(g.x, g.y)
+
+	if g.y > screenHeight {
+		// 画面の外に出たら終了
+		os.Exit(0)
+	}
 	return nil
 }
 
