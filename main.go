@@ -6,6 +6,7 @@ import (
 	"image"
 	_ "image/png"
 	"log"
+	"math"
 	"math/rand"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -35,8 +36,17 @@ func NewGame() (*Game, error) {
 		return nil, err
 	}
 
+	reversed := ebiten.NewImage(width, height)
+
+	// Rotate 180 degrees
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Rotate(math.Pi)
+	op.GeoM.Translate(width, height)
+
+	reversed.DrawImage(ebiten.NewImageFromImage(img), op)
+
 	return &Game{
-		image: ebiten.NewImageFromImage(img),
+		image: reversed,
 	}, nil
 }
 
