@@ -24,7 +24,7 @@ const (
 )
 
 func NewGame() (*Game, error) {
-	names := []string{"cry", "embarrass", "faint", "scare"}
+	names := []string{"cry", "faint", "scare"}
 	name := names[rand.Intn(len(names))]
 	b, err := fs.ReadFile("images/" + name + ".png")
 	if err != nil {
