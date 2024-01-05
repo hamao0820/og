@@ -7,13 +7,9 @@ An inverted [The Go Gopher (gopher)](https://go.dev/blog/gopher) falls from the 
 ## Install
 
 ```bash
-go install github.com/hamao0820/og@latest
-```
-
-### Mac
-
-```bash
-brew install hamao0820/tap/og
+$ git clone https://github.com/hamao0820/og.git
+$ cd og
+$ CGO_ENABLED=1 go build ./...
 ```
 
 ## Usage
